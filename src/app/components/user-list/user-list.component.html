@@ -1,0 +1,35 @@
+<div class="col">
+    <div *ngIf="(users| async)?.length > 0; else noRecords">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users | async">
+                <td>{{ user.name }}</td>
+                <td>{{ user.city }}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="editUser(user)">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <ng-template #noRecords>
+        <table class="table table-striped mt-5">
+            <tbody>
+            <tr>
+                <td><p>No users to show!</p></td>
+            </tr>
+            </tbody>
+        </table>
+    </ng-template>
+</div>
